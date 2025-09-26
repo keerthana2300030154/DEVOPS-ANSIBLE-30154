@@ -15,7 +15,7 @@ services:
       - springboot-mysql-net
 
   backend:
-    image: keerthana2300030154/docker-springboot:latest
+    image: keerthana2300030154/docker-backend:latest
     container_name: springboot
     ports:
       - "4000:4000"   # Match frontend .env
@@ -26,7 +26,7 @@ services:
       - springboot-mysql-net
 
   frontend:
-    image: keerthana2300030154/docker-react:latest
+    image: keerthana2300030154/docker-frontend:latest
     container_name: react
     ports:
       - "3000:80"
