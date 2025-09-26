@@ -18,7 +18,7 @@ services:
     image: keerthana2300030154/docker-backend:latest
     container_name: springboot
     ports:
-      - "4000:4000"   # Match frontend .env
+      - "4000:4000"   
     depends_on:
       - mysqldb
     restart: always
