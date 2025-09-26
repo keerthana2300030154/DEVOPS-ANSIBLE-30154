@@ -1,33 +1,24 @@
-# Stage 1: Build the application
+# Stage 1: Build the app
 FROM eclipse-temurin:21-jdk AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper and configuration
-COPY mvnw .
+COPY mvnw .          
 COPY .mvn/ .mvn
+COPY pom.xml ./
+COPY src ./src
 
-# Make the wrapper executable
+# Give execute permission for mvnw
 RUN chmod +x mvnw
 
-# Copy project descriptor and source code
-COPY pom.xml .
-COPY src/ ./src
-
-# Build the project without running tests
 RUN ./mvnw clean package -DskipTests
 
-# Stage 2: Run the application
+# Stage 2: Run the app
 FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
-
-# Copy the built jar from the builder stage
 COPY --from=builder /app/target/*.jar app.jar
 
-# Expose the port your Spring Boot app uses
-EXPOSE 4000
+EXPOSE 2000
 
-# Run the Spring Boot app
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

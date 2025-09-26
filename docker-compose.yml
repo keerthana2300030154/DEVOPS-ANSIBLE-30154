@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: docker
       MYSQL_DATABASE: healthdb
     ports:
-      - "3307:3306"   # Host 3307 -> Container 3306
+      - "3307:3306"  
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
